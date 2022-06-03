@@ -39,6 +39,7 @@ browser = webdriver.Chrome(service=Service(os.getenv('CHROME_EXECUTABLE_PATH')),
 
 is_liquidity = False
 counter  = 1
+timeout = 60
 while not is_liquidity:
     try:
         #driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options = firefox_options)
@@ -50,7 +51,7 @@ while not is_liquidity:
         print("proceeding to sleep")
 
         #time.sleep(40)
-        wait = WebDriverWait(driver, 200)
+        wait = WebDriverWait(driver, timeout)
         block = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[4]/div/div[3]/div[2]/table/tbody/tr[18]/td[4]/div')))
         #liquidity_usdc = driver.find_elements_by_xpath('/html/body/div[1]/div[4]/div/div[3]/div[2]/table/tbody/tr[18]/td[4]/div')
         liquidity_usdc = driver.find_element(By.XPATH, '/html/body/div[1]/div[4]/div/div[3]/div[2]/table/tbody/tr[18]/td[4]/div')
@@ -70,7 +71,11 @@ while not is_liquidity:
         driver.quit()
         counter += 1
     except TimeoutException:
-        print("timedout")
+        timeout += 60
+        if timeout > 300:
+            break
+        print("timedout. timeout is now" + str(timeout))
+        
     # except:
     #     is_liquidity = True
     #     driver.quit()
