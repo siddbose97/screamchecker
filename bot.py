@@ -8,12 +8,19 @@ import time
 from selenium.webdriver.common.by import By
 from telegram_notif import send_telegram_message
 from dotenv import load_dotenv
+import logging
+# Enable logging
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
+)
 
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 api_key = os.environ.get('api_key')
 chat_id = os.environ.get('chat_id')
 
+print(api_key)
 
 
 # initialize the options
@@ -22,14 +29,14 @@ firefox_options = Options()
 firefox_options.add_argument('--headless')
 firefox_options.add_argument('--disable-blink-features=AutomationControlled')
 
-
+print(firefox_options)
 
 is_liquidity = False
 counter  = 1
 while not is_liquidity:
     #driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options = firefox_options)
     driver = webdriver.Firefox(options = firefox_options)
-
+    print("in while loop")
     # try:
     URL = 'https://v1.scream.sh/lend'
     driver.get(URL)
