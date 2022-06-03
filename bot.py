@@ -33,7 +33,7 @@ option.binary_location = os.getenv('GOOGLE_CHROME_BIN')
 
 option.add_argument("--headless")
 option.add_argument('--disable-gpu')
-option.add_argument('--no-sandbox')
+# option.add_argument('--no-sandbox')
 browser = webdriver.Chrome(service=Service(os.getenv('CHROME_EXECUTABLE_PATH')), options=option)
 
 
@@ -50,7 +50,7 @@ while not is_liquidity:
         print("proceeding to sleep")
 
         #time.sleep(40)
-        wait = WebDriverWait(driver, 100)
+        wait = WebDriverWait(driver, 200)
         block = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[4]/div/div[3]/div[2]/table/tbody/tr[18]/td[4]/div')))
         #liquidity_usdc = driver.find_elements_by_xpath('/html/body/div[1]/div[4]/div/div[3]/div[2]/table/tbody/tr[18]/td[4]/div')
         liquidity_usdc = driver.find_element(By.XPATH, '/html/body/div[1]/div[4]/div/div[3]/div[2]/table/tbody/tr[18]/td[4]/div')
