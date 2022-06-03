@@ -45,7 +45,7 @@ while not is_liquidity:
     driver.get(URL)
     time.sleep(30)
     #liquidity_usdc = driver.find_elements_by_xpath('/html/body/div[1]/div[4]/div/div[3]/div[2]/table/tbody/tr[18]/td[4]/div')
-    liquidity_usdc = driver.find_element(By.XPATH, '/html/body/div[1]/div[4]/div/div[3]/div[2]/table/tbody/tr[18]/td[4]/div')
+    liquidity_usdc = driver.find_element(By.XPATH, '//*[@id="__next"]/div[4]/div/div[3]/div[2]/table/tbody/tr[18]/td[4]/div')
 
     if float(liquidity_usdc.text) > 10:
         #send_email(f"liquidity is currently {liquidity_usdc.text}")
