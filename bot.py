@@ -73,6 +73,7 @@ while not is_liquidity:
     except TimeoutException:
         timeout += 60
         if timeout > 300:
+            driver.quit()
             break
         print("timedout. timeout is now" + str(timeout))
         
