@@ -31,7 +31,7 @@ option.binary_location = os.getenv('GOOGLE_CHROME_BIN')
 option.add_argument("--headless")
 option.add_argument('--disable-gpu')
 option.add_argument('--no-sandbox')
-browser = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=option)
+browser = webdriver.Chrome(service=Service(os.getenv('CHROME_EXECUTABLE_PATH')), options=option)
 
 
 is_liquidity = False
