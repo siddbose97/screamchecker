@@ -3,6 +3,8 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 import os
 import time
 from selenium.webdriver.common.by import By
@@ -45,7 +47,9 @@ while not is_liquidity:
     driver.get(URL)
     print("proceeding to sleep")
 
-    time.sleep(40)
+    #time.sleep(40)
+    wait = WebDriverWait(driver, 20)
+    block = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[4]/div/div[3]/div[2]/table/tbody/tr[18]/td[4]/div')))
     #liquidity_usdc = driver.find_elements_by_xpath('/html/body/div[1]/div[4]/div/div[3]/div[2]/table/tbody/tr[18]/td[4]/div')
     liquidity_usdc = driver.find_element(By.XPATH, '/html/body/div[1]/div[4]/div/div[3]/div[2]/table/tbody/tr[18]/td[4]/div')
 
