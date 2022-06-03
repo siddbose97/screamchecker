@@ -1,6 +1,4 @@
-# scraper.py
 
-# importing selenium into code
 from selenium import webdriver 
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.firefox.service import Service
@@ -8,14 +6,14 @@ from selenium.webdriver.firefox.options import Options
 import os
 import time
 from selenium.webdriver.common.by import By
-#from emailing import send_email
 from telegram_notif import send_telegram_message
+from dotenv import load_dotenv
 
 
-os.environ['GH_TOKEN'] = "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"
+load_dotenv()
+api_key = os.environ.get('api_key')
+chat_id = os.environ.get('chat_id')
 
-api_key = "5574894235:AAF7QfRpPBIc-__ceIeRAPZqkdncgWigI_0"
-chat_id = 1383513208
 
 
 # initialize the options

@@ -30,5 +30,3 @@ def send_telegram_message(message: str,
 
     return response
 
-api_key = "5574894235:AAF7QfRpPBIc-__ceIeRAPZqkdncgWigI_0"
-chat_id = 1383513208
