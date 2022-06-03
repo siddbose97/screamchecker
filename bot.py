@@ -1,8 +1,8 @@
 
 from selenium import webdriver 
-from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.firefox.service import Service
-from selenium.webdriver.firefox.options import Options
+from webdriver_manager.chrome import ChromeDriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 import os
 import time
 from selenium.webdriver.common.by import By
@@ -23,19 +23,22 @@ chat_id = os.environ.get('chat_id')
 print(api_key)
 
 
-# initialize the options
-firefox_options = Options()
-# add the argument headless
-firefox_options.add_argument('--headless')
-firefox_options.add_argument('--disable-blink-features=AutomationControlled')
+option = webdriver.ChromeOptions()
 
-print(firefox_options)
+# You will need to specify the binary location for Heroku 
+option.binary_location = os.getenv('GOOGLE_CHROME_BIN')
+
+option.add_argument("--headless")
+option.add_argument('--disable-gpu')
+option.add_argument('--no-sandbox')
+browser = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=option)
+
 
 is_liquidity = False
 counter  = 1
 while not is_liquidity:
     #driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options = firefox_options)
-    driver = webdriver.Firefox(options = firefox_options)
+    driver = webdriver.Chrome(options = option)
     print("in while loop")
     # try:
     URL = 'https://v1.scream.sh/lend'
